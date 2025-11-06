@@ -6,6 +6,17 @@ cask "chrome-test-zaid" do
   name "Google Chrome"
   desc "Web browser from Google"
   homepage "https://www.google.com/chrome/"
+  
+  # Check if the app already exists in /Applications and remove it if it does
+  app_name = "Google Chrome.app"
+  app_path = "/Applications/#{app_name}"
+
+  if File.exist?(app_path)
+    puts "Removing existing application: #{app_name}"
+    FileUtils.rm_rf(app_path) # Remove the existing app
+  end
+
+  # Install the new app from the DMG
 
   app "Google Chrome.app"
 end
